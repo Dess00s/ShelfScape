@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - ShelfScape</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="index.html">
+            <img src="logoo.png" alt="Logo" class="logo"> ShelfScape
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="container product-container mt-5">
+        <div id="product-details" class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow p-4">
+                    <h2 id="product-title" class="text-center">Loading...</h2>
+                    <img id="product-img" src="shelf images/" alt="Book Image" class="img-fluid mb-3 mx-auto d-block" style="max-height: 400px;">
+                    <div class="card-body text-center">
+                        <p id="product-description"></p>
+                        <p><strong>Author:</strong> <span id="product-author"></span></p>
+                        <p><strong>Price:</strong> <span id="product-price"></span></p>
+
+                        <!-- Quantity and Add to Cart -->
+                        <div class="mt-3">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" class="form-control w-25 d-inline-block" value="1" min="1">
+                            <button id="add-to-cart" class="btn btn-primary mt-2">Add to Cart</button>
+                        </div>
+
+                        <!-- Back to Category Button -->
+                        <a id="back-btn" href="#" class="btn btn-secondary mt-3">Back to Category</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-black text-center py-3 mt-5">
+        &copy; 2025 ShelfScape. All rights reserved.
+    </footer>
+
+    <!-- JS File -->
+    <script>
+        // Array of 50 books across 5 categories
+        const books = [
+            // Romance Category (10 Books)
+            { id: 1, title: "Sunburned Heart", img: "r1.jpg", desc: "A heartwarming story about love, loss, and hope.", price: "₱1,200", author: "Jonaxx", category: "romance.html" },
+            { id: 2, title: "Sands of Time", img: "r2.jpg", desc: "A thrilling adventure across different timelines.", price: "₱1,200", author: "Jonaxx", category: "romance.html" },
+            { id: 3, title: "Blown by the Wind", img: "r3.jpg", desc: "A romantic journey through the unpredictable winds of fate.", price: "₱1,200", author: "Jonaxx", category: "romance.html" },
+            { id: 4, title: "Baka Sakali", img: "r4.jpg", desc: "A modern story about life’s uncertainties.", price: "₱650", author: "Jonaxx", category: "romance.html" },
+            { id: 5, title: "Until Forever", img: "r5.jpg", desc: "A love story that challenges time and distance.", price: "₱1,500", author: "Jonaxx", category: "romance.html" },
+            { id: 6, title: "Until He Returned", img: "r6.jpg", desc: "A reunion that defies the odds.", price: "₱1,500", author: "Jonaxx", category: "romance.html" },
+            { id: 7, title: "Until He Was Gone", img: "r7.jpg", desc: "A bittersweet tale of love and less", price: "₱1,500", author: "Jonaxx", category: "romance.html" },
+            { id: 8, title: "Love in the Dark", img: "r8.jpg", desc: "A love story that blooms in the shadows of secrets.", price: "₱1,200", author: "Jonaxx", category: "romance.html" },
+            { id: 9, title: "White Lies Beneath the Sand", img: "r9.jpg", desc: "A love story buried under layers of pain and discovery", price: "₱1,200", author: "Jonaxx", category: "romance.html" },
+            { id: 10, title: "Worthless", img: "r10.jpg", desc: "A heart-wrenching tale of unreciprocated love.", price: "₱650", author: "Jonaxx", category: "romance.html" },
+             // Drama Category (10 Books)
+            { id: 11, title: "I Love You Since 1892", img: "d1.jpg", desc: "A historical love story that transcends time and societal expectations.", price: "₱1,500", author: "Binibining Mia", category: "drama.html" },
+            { id: 12, title: "Stay Awake Agatha", img: "d2.jpg", desc: "A woman’s journey through heartbreak and self-discovery.", price: "₱1,000", author: "Serialsleeper", category: "drama.html" },
+            { id: 13, title: "Taste of Sky", img: "d3.jpg", desc: "A journey of self-redemption and second chances.", price: "₱1,200", author: "VentreCanard", category: "drama.html" },
+            { id: 14, title: "The Ten Year Gap", img: "d4.jpg", desc: "A complex narrative that explores the pain of waiting and the joy of reuniting.", price: "₱1,200", author: "Owwsic", category: "drama.html" },
+            { id: 15, title: "Angel in Disguise", img: "d5.jpg", desc: "A touching story of how love finds us in the most unexpected ways.", price: "₱650", author: "Alyloony", category: "drama.html" },
+            { id: 16, title: "Chaining Lockets", img: "d6.jpg", desc: "A tale of promises made and hearts chained by destiny.", price: "₱1,000", author: "Heartlessnostalgia", category: "drama.html" },
+            { id: 17, title: "Something Phenomenal", img: "d7.jpg", desc: "A story that redefines friendship, love, and sacrifice.", price: "₱1,200", author: "April Avery", category: "drama.html" },
+            { id: 18, title: "Dosage of Serotonin", img: "d8.jpg", desc: "A bittersweet journey of finding happiness in unexpected places.", price: "₱1,500", author: "Inksteady", category: "drama.html" },
+            { id: 19, title: "The Day She Said Goodnight", img: "d9.jpg", desc: "A tearing goodbye that lingers beyond words.", price: "₱1,200", author: "Owwsic", category: "drama.html" },
+            { id: 20, title: "Just the Benefits", img: "d10.jpg", desc: "A modern love story exploring complicated relationships.", price: "₱1,200", author: "Beeyotch", category: "drama.html" },
+             // Horror Category (10 Books)
+            { id: 21, title: "I Love You Ara", img: "h1.jpg", desc: "A chilling love story that blurs the lines between life and death.", price: "₱1,500", author: "Jamille Fumah", category: "horror.html" },
+            { id: 22, title: "Class 3-C Has A Secret", img: "h2.jpg", desc: "A chilling tale of a class hiding deadly secrets.", price: "₱650", author: "Enah Guevarra", category: "horror.html" },
+            { id: 23, title: "Alphabet of Death", img: "h3.jpg", desc: "A mysterious alphabet book where each letter tells a deadly tale.", price: "₱650", author: "RisingServant", category: "horror.html" },
+            { id: 24, title: "Casa Inferno", img: "h4.jpg", desc: "A haunted house where no one leaves unscathed", price: "₱1,500", author: "Jamille Fumah", category: "horror.html" },
+            { id: 25, title: "Beware of the Class President", img: "h5.jpg", desc: "A terrifying tale of manipulation and deceit.", price: "₱1,500", author: "Jamille Fumah", category: "horror.html" },
+            { id: 26, title: "Hell University (Part 1)", img: "h6.jpg", desc: "A horrifying initiation into an unforgiving school.", price: "₱1,200", author: "KnightInBlack", category: "horror.html" },
+            { id: 27, title: "Hell University (Part 2)", img: "h7.jpg", desc: "A battle between survival and succumbing to evil.", price: "₱1,200", author: "KnightInBlack", category: "horror.html" },
+            { id: 28, title: "Chasing Hell", img: "h8.jpg", desc: "A journey to escape the grips of hell itself.", price: "₱1,200", author: "KnightInBlack", category: "horror.html" },
+            { id: 29, title: "Alphabet of Death (Part 2)", img: "h9.jpg", desc: "The deadly alphabet continues its sinister tale.", price: "₱1,500", author: "RisingServant", category: "horror.html" },
+            { id: 30, title: "The Untold Story of Ara", img: "h10.jpg", desc: "A haunting narrative that leaves no stone unturned.", price: "₱1,500", author: "Jamille Fumah", category: "horror.html" },
+            // Sci-Fi Category (10 Books)
+            { id: 31, title: "Too Like The Lightning (Part 1)", img: "s1.jpg", desc: "A futuristic tale of technology, power, and the unknown.", price: "₱1,500", author: "Ada Palmer", category: "scifi.html" },
+            { id: 32, title: "Equator", img: "s2.jpg", desc: "A gripping journey to the unknown equator of the universe.", price: "₱1,000", author: "Brian Aldiss", category: "scifi.html" },
+            { id: 33, title: "City Dreams", img: "s3.jpg", desc: "A futuristic exploration of alternate realities.", price: "₱1,200", author: "Merry Warren", category: "scifi.html" },
+            { id: 34, title: "Inherit The Stars", img: "s4.jpg", desc: "A quest to reclaim lost knowledge from the stars.", price: "₱1,500", author: "James P. Hogan", category: "scifi.html" },
+            { id: 35, title: "Towards The Farthest Side", img: "s5.jpg", desc: "An expedition to the edge of the universe.", price: "₱1,200", author: "Marx A. Alojado", category: "scifi.html" },
+            { id: 36, title: "Extinction Level", img: "s6.jpg", desc: "A battle for survival in a world on the brink of extinction", price: "₱1,200", author: "J.L. Harden", category: "scifi.html" },
+            { id: 37, title: "Too Like The Lightning (Part 2)", img: "s7.jpg", desc: "The continuation of a journey through futuristic chaos.", price: "₱1,500", author: "Ada Palmer", category: "scifi.html" },
+            { id: 38, title: "Relic", img: "s8.jpg", desc: "Discovering a powerful artifact that could reshape the universe.", price: "₱1,200", author: "Paul Rix", category: "scifi.html" },
+            { id: 39, title: "Dead Star", img: "s9.jpg", desc: "A cosmic battle to prevent the collapse of a dying star.", price: "₱1,500", author: "Simon Kewin", category: "scifi.html" },
+            { id: 40, title: "One Against Time", img: "s10.jpg", desc: "The colonization and terraforming of Mars.", price: "₱1,000", author: "Astron del Martia", category: "scifi.html" },
+            // Poetry Category (10 Books)
+            { id: 41, title: "Milk and Honey", img: "p1.jpg", desc: "A collection of raw and honest poems about love, pain, and healing.", price: "₱500", author: "Rupi Kaur", category: "poetry.html" },
+            { id: 43, title: "Love Her Wild", img: "p3.jpg", desc: "A journey of love captured through vivid imagery and emotions.", price: "₱900", author: "Atticus", category: "poetry.html" },
+            { id: 44, title: "Love Looks Pretty on You", img: "p4.jpg", desc: "A celebration of love and self-discovery.", price: "₱850", author: "Lang Lear", category: "poetry.html" },
+            { id: 45, title: "The Sun and Her Flowers", img: "p5.jpg", desc: "A story of growth, love, and resilience told through poetry.", price: "₱700", author: "Rupi Kaur", category: "poetry.html" },
+            { id: 46, title: "Sunflower Soul", img: "p6.jpg", desc: "A vibrant collection of poems that speak to the heart.", price: "₱750", author: "Distinee Gayle", category: "poetry.html" },
+            { id: 47, title: "When the World Didn’t End", img: "p7.jpg", desc: "A lyrical exploration of love and heartbreak.", price: "₱800", author: "Caroline Kaufman", category: "poetry.html" },
+            { id: 48, title: "Healing for No One But Me", img: "p8.jpg", desc: "An emotional journey toward self-healing and understanding.", price: "₱750", author: "Jennae Cecelia", category: "poetry.html" },
+            { id: 49, title: "How to Cure a Ghost", img: "p9.jpeg", desc: "A powerful collection of poems addressing trauma and identity.", price: "₱800", author: "Fariha Roisin", category: "poetry.html" },
+            { id: 50, title: "Depression & Other Magic Tricks", img: "p10.jpg", desc: "A raw exploration of mental health and growth.", price: "₱900", author: "Sabrina Benaim", category: "poetry.html" },
+            { id: 51, title: "No Matter the Wreckage", img: "p11.jpg", desc: "A captivating reflection on life’s uncertainties and hopes.", price: "₱500", author: "Sarah Kay", category: "poetry.html" }
+        ];
+
+        // Get product ID from URL
+        const params = new URLSearchParams(window.location.search);
+        const productId = parseInt(params.get('id'));
+
+        // Find the book by ID
+        const product = books.find(book => book.id === productId);
+
+        // Display product details if found
+        if (product) {
+            document.getElementById('product-title').textContent = product.title;
+            document.getElementById('product-img').src = `shelf images/${product.img}`;
+            document.getElementById('product-img').alt = product.title;
+            document.getElementById('product-description').textContent = product.desc;
+            document.getElementById('product-price').textContent = product.price;
+            document.getElementById('product-author').textContent = product.author;
+
+            // Set the back button to go to the category page
+            document.getElementById('back-btn').href = product.category;
+        } else {
+            document.getElementById('product-details').innerHTML = `
+                <h2>Product not found!</h2>
+                <a href="index.html" class="btn btn-secondary mt-3">Back to Home</a>
+            `;
+        }
+
+        // Handle Add to Cart functionality
+        document.getElementById('add-to-cart').addEventListener('click', () => {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            if (quantity > 0) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartItem = cart.find(item => item.id === product.id);
+
+                if (cartItem) {
+                    cartItem.quantity += quantity;
+                } else {
+                    cart.push({ ...product, quantity });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${product.title} added to cart!`);
+                updateCartCount();
+            } else {
+                alert('Please select a valid quantity!');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

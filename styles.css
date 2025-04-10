@@ -1,0 +1,384 @@
+/* Body Background Image */
+body {
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+nav {
+    background: linear-gradient(90deg, #f7e1b5, #d4a373);
+    color: black;
+    padding: 10px 20px;
+}
+
+/* Navigation Links */
+nav .navbar-nav .nav-link {
+    color: black;
+    padding: 8px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+/* Highlight Active Navigation */
+nav .navbar-nav .nav-link.active,
+nav .navbar-nav .nav-link:focus,
+nav .navbar-nav .nav-link:hover {
+    background-color: #8d6e63;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: #f7e1b5;
+    font-size: 1rem;
+    min-width: 130px;
+    padding: 4px 0;
+}
+
+/* Dropdown Links */
+.dropdown-item {
+    color: #5d4037;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 5px 10px;
+}
+
+/* Hover Effect for Dropdown Links */
+.dropdown-item:hover {
+    background-color: #8d6e63;
+    color: white;
+}
+
+/* Logo Styling */
+.logo {
+    width: 50px;
+    margin-right: 10px;
+}
+
+/* Change Font Color of Shelfscape */
+.navbar-brand {
+    color: black !important;
+}
+
+/* Home Section Styling */
+.home-section {
+    background: #f7e1b5;
+    padding: 60px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Welcome Title */
+.welcome-title {
+    font-size: 2.5rem;
+    color: #5d4037;
+    font-weight: bold;
+}
+
+/* Home Description */
+.home-description {
+    font-size: 1.2rem;
+    color: #4e342e;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Hero Image Styling */
+.hero-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect on Image */
+.hero-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Off Sale Section */
+.off-sale-section {
+    background-color: #ffccbc;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Discount Text */
+.discount-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d84315;
+}
+
+/* Category Section (Book Type) */
+.category-section {
+    background-color: #f7e1b5;
+    padding: 40px 20px;
+    border-radius: 15px;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Category Item Styling */
+.category-item {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Category Icon */
+.category-icon {
+    font-size: 2.5rem;
+    color: #5d4037;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect on Category Icon */
+.category-icon:hover {
+    color: #8d6e63;
+    transform: scale(1.1);
+}
+
+/* Product Image Styling */
+.product-img {
+    width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover and Click Effect for Product Images */
+.product-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-img:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-in-out;
+}
+
+/* Card Styling (Book Products) */
+.card {
+    border: 1px solid #d7ccc8;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+    background-color: #f7e1b5;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Card Hover Effect */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* CART SECTION STYLING */
+#cart-table {
+    background-color: burlywood;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin: auto;
+    width: 100%;
+    max-width: 900px;
+    height: 60vh;
+    animation: slideUp 0.5s ease-out;
+}
+
+#cart-table th {
+    background-color: #5d4037;
+    color: white;
+}
+
+#cart-table td,
+#cart-table th {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+}
+
+#empty-cart-message {
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #ffe0b2;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #5d4037;
+    width: 50%;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease-out;
+}
+
+#checkout {
+    background-color: #5d4037;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    margin: 20px auto;
+}
+
+#checkout:hover {
+    background-color: #8d6e63;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    #cart-table td {
+        font-size: 14px;
+    }
+
+    #checkout {
+        width: 100%;
+    }
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #5d4037;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Hover Effect */
+.btn-primary:hover {
+    background-color: #8d6e63;
+    transform: translateY(-2px);
+}
+
+/* Footer Styling */
+footer {
+    background-color: burlywood;
+    color: black;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Footer Icons */
+footer a {
+    color: #173063;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+/* About Section Styling */
+.about-section {
+    background-color: #f7e1b5;
+    padding: 40px 20px;
+    border-radius: 15px;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Contact Section Styling */
+.contact-section {
+    background-color: #f7e1b5;
+    padding: 40px 20px;
+    border-radius: 15px;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .product-img {
+        width: 120px;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+    .home-section {
+        text-align: center;
+    }
+
+    .hero-img {
+        margin-top: 20px;
+    }
+}
+
+/* Keyframes for Movement Effects */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* === FLIP CARD STYLING START === */
+ /* Flip card styles */
+ .category-item {
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.flip-card {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    margin: 0 auto;
+}
+
+.category-item:hover .flip-card {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: #fce7c2;
+    border-radius: 10px;
+}
+
+.flip-card-front {
+    color: #6c422a;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #6c422a;
+}
+
+.category-section p {
+    display: none;
+}

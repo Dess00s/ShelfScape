@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShelfScape - Cart</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .logo {
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">
+            <img src="logoo.png" alt="ShelfScape Logo" class="logo"> ShelfScape
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="cart.html">Cart <span id="cart-count">(0)</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                <!-- Categories Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <a class="dropdown-item" href="romance.html">Romance</a>
+                        <a class="dropdown-item" href="drama.html">Drama</a>
+                        <a class="dropdown-item" href="horror.html">Horror</a>
+                        <a class="dropdown-item" href="scifi.html">Sci-Fi</a>
+                        <a class="dropdown-item" href="poetry.html">Poetry</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Section -->
+    <br><h2 class="text-center mb-4">My Cart</h2>
+
+    <div id="cart-items" class="table-responsive">
+        <table class="table table-bordered text-center" id="cart-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Book</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-table-body">
+                <!-- Cart items will be loaded dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Empty Cart Message -->
+    <div id="empty-cart-message" class="alert alert-info hidden">
+        Your cart is empty. <a href="romance.html">Continue shopping.</a>
+    </div>
+
+    <!-- Checkout Button -->
+    <div class="center-wrapper">
+        <div class="text-center">
+            <button id="checkout" class="btn btn-success mt-3 hidden">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart(); // 
+            updateCartCount(); 
+        });
+
+        // Load Cart Items
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartTableBody = document.getElementById('cart-table-body');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const checkoutBtn = document.getElementById('checkout');
+            const cartTable = document.getElementById('cart-table');
+
+            cartTableBody.innerHTML = '';
+
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                checkoutBtn.classList.add('hidden');
+                cartTable.classList.add('hidden');
+                return;
+            }
+
+            emptyCartMessage.classList.add('hidden');
+            cartTable.classList.remove('hidden');
+            checkoutBtn.classList.remove('hidden');
+
+            let totalAmount = 0;
+
+            cart.forEach((item, index) => {
+                const total = parseFloat(item.price.replace('₱', '').replace(',', '')) * item.quantity;
+                const row = `
+                    <tr id="row-${index}">
+                        <td><img src="shelf images/${item.img}" alt="${item.title}" class="img-fluid" style="width: 80px; height: 120px; object-fit: cover; border-radius: 5px;"></td>
+                        <td>${item.title}</td>
+                        <td>₱${parseFloat(item.price.replace('₱', '').replace(',', '')).toLocaleString()}</td>
+                        <td>${item.quantity}</td>
+                        <td>₱${total.toLocaleString()}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button>
+                        </td>
+                    </tr>
+                `;
+                cartTableBody.innerHTML += row;
+                totalAmount += total;
+            });
+
+            // Add Total Row
+            cartTableBody.innerHTML += `
+                <tr class="font-weight-bold" id="total-row">
+                    <td colspan="4" class="text-right">Total:</td>
+                    <td colspan="2">₱${totalAmount.toLocaleString()}</td>
+                </tr>
+            `;
+        }
+
+        // Remove one item
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const row = document.getElementById(`row-${index}`);
+            
+            cart[index].quantity -= 1;
+
+            if (cart[index].quantity === 0) {
+                cart.splice(index, 1);
+                row.remove(); 
+            } else {
+                // Update the quantity in the table
+                row.cells[3].textContent = cart[index].quantity;
+                row.cells[4].textContent = `₱${(parseFloat(cart[index].price.replace('₱', '').replace(',', '')) * cart[index].quantity).toLocaleString()}`;
+            }
+
+            // Save updated cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update cart count and total dynamically
+            updateCartCount();
+            updateTotalAmount();
+        }
+
+        // Update total amount dynamically after item changes
+        function updateTotalAmount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalAmount = 0;
+
+            cart.forEach(item => {
+                const total = parseFloat(item.price.replace('₱', '').replace(',', '')) * item.quantity;
+                totalAmount += total;
+            });
+
+            // Update total row
+            const totalRow = document.getElementById('total-row');
+            if (totalRow) {
+                totalRow.cells[1].textContent = `₱${totalAmount.toLocaleString()}`;
+            }
+
+            // Show empty cart message if the cart is empty
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            const checkoutBtn = document.getElementById('checkout');
+            const cartTable = document.getElementById('cart-table');
+
+            if (cart.length === 0) {
+                emptyCartMessage.classList.remove('hidden');
+                checkoutBtn.classList.add('hidden');
+                cartTable.classList.add('hidden');
+            } else {
+                emptyCartMessage.classList.add('hidden');
+                checkoutBtn.classList.remove('hidden');
+                cartTable.classList.remove('hidden');
+            }
+        }
+
+        // Proceed to Checkout
+        document.getElementById('checkout').addEventListener('click', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add products to your cart before proceeding to checkout.');
+            } else {
+                alert('Checkout successful! Thank you for your purchase.');
+                localStorage.removeItem('cart');
+                loadCart();
+                updateCartCount();
+            }
+        });
+
+        // Update Cart Count in Navbar
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = `(${totalItems})`;
+        }
+    </script>
+
+    <!-- Bootstrap JS for Dropdown & Navbar -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShelfScape - Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">
+            <img src="logoo.png" alt="ShelfScape Logo" class="logo"> ShelfScape
+        </a>
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                <!-- Categories Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        <a class="dropdown-item" href="romance.html">Romance</a>
+                        <a class="dropdown-item" href="drama.html">Drama</a>
+                        <a class="dropdown-item" href="horror.html">Horror</a>
+                        <a class="dropdown-item" href="scifi.html">Sci-Fi</a>
+                        <a class="dropdown-item" href="poetry.html">Poetry</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <div class="container home-section mt-5">
+        <div class="row align-items-center">
+            <!-- Left Content (Text and Description) -->
+            <div class="col-md-6 text-left">
+                <h1 class="welcome-title">Welcome to ShelfScape!</h1>
+                <p class="home-description">
+                    Explore and purchase our collection of books that transport you to new worlds.
+                    At ShelfScape, we bring together an exclusive selection of books that cater to all tastes.
+                </p>
+                <a href="about.html" class="btn btn-primary">Learn More</a><br>
+                <a href="https://www.facebook.com/brukinaqqq.7/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+            </div>
+
+            <!-- Right Content (Image with Effect) -->
+            <div class="col-md-6 text-center">
+                <img src="woman--preview.png" alt="Book Stack" class="hero-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Off Sale Section - Now at the Top -->
+    <div class="container off-sale-section text-center mt-5">
+        <h2>Coming Soon: Special Discount Offer!</h2>
+        <p>Enjoy up to <span class="discount-text">50% OFF</span> on selected books. Stay tuned!</p>
+        <a href="romance.html" class="btn btn-warning">Shop Now</a>
+    </div>
+
+    <!-- Category Icons Section (with Flip Card) -->
+    <div class="container category-section mt-5 text-center">
+        <h2 class="mb-4">Book Types</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-2 category-item">
+                <a href="romance.html">
+                    <div class="flip-card">
+                        <div class="flip-card-front"><i class="fas fa-heart category-icon"></i></div>
+                        <div class="flip-card-back">Romance</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2 category-item">
+                <a href="drama.html">
+                    <div class="flip-card">
+                        <div class="flip-card-front"><i class="fas fa-theater-masks category-icon"></i></div>
+                        <div class="flip-card-back">Drama</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2 category-item">
+                <a href="horror.html">
+                    <div class="flip-card">
+                        <div class="flip-card-front"><i class="fas fa-ghost category-icon"></i></div>
+                        <div class="flip-card-back">Horror</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2 category-item">
+                <a href="scifi.html">
+                    <div class="flip-card">
+                        <div class="flip-card-front"><i class="fas fa-space-shuttle category-icon"></i></div>
+                        <div class="flip-card-back">Sci-Fi</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-2 category-item">
+                <a href="poetry.html">
+                    <div class="flip-card">
+                        <div class="flip-card-front"><i class="fas fa-pen-nib category-icon"></i></div>
+                        <div class="flip-card-back">Poetry</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Products Section - Moved Below Discount -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Featured Products</h2>
+        <div class="row">
+            <!-- Book 1 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="d1.jpg" class="card-img-top product-img" alt="I Love You Since 1892">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">I Love You Since 1892</h5>
+                        <p class="card-text">A heartwarming story about love, loss, and hope.</p>
+                        <a href="product.html?id=11" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="p7.jpg" class="card-img-top product-img" alt="When the World Didn’t End">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">When the World Didn’t End</h5>
+                        <p class="card-text">A lyrical exploration of love and heartbreak.</p>
+                        <a href="product.html?id=47" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="r3.jpg" class="card-img-top product-img" alt="Blown by the Wind">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Blown by the Wind</h5>
+                        <p class="card-text">A romantic journey through the winds of fate.</p>
+                        <a href="product.html?id=3" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-black text-center py-3 mt-5">
+        <div class="footer-content">
+            <p>&copy; 2025 ShelfScape. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
